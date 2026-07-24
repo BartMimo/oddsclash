@@ -44,6 +44,14 @@ export async function signUp({ email, password, username, avatarColor }) {
     'Time-out bij registreren. Probeer het opnieuw.'
   )
   if (error) throw error
+  // Bestaat het e-mailadres al, dan geeft Supabase bewust 200 OK zonder
+  // sessie terug (anti-enumeratie — voorkomt dat je via signup kan aftasten
+  // welke e-mails al bestaan). Zonder deze check leek de registratie
+  // geslaagd (geen error) terwijl er nooit was ingelogd: de UI bleef dan
+  // voor altijd "laden" tonen. Expliciet herkennen en een duidelijke fout geven.
+  if (!data.session) {
+    throw new Error('Dit e-mailadres is al geregistreerd. Probeer in te loggen.')
+  }
   return data
 }
 
