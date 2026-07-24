@@ -30,6 +30,21 @@ const MARKET_LABELS = {
   player_saves: 'Speler — Reddingen',
   player_goal_scorer_anytime: 'Doelpuntenmaker (altijd)',
   player_goal_scorer_first: 'Eerste doelpuntenmaker',
+  // PropLine's eigen market-keys voor voetbal (geen "schoten" beschikbaar
+  // bij deze provider — wel doelpuntenmaker/assists/kaarten/hoekschoppen).
+  anytime_goal_scorer: 'Doelpuntenmaker (altijd)',
+  first_goal_scorer: 'Eerste doelpuntenmaker',
+  '2plus_goals': 'Speler 2+ doelpunten',
+  player_assists: 'Speler — Assist',
+  player_2plus_assists: 'Speler 2+ assists',
+  player_cards: 'Speler krijgt kaart',
+  goal_or_assist: 'Doelpunt of assist',
+  total_corners: 'Totaal hoekschoppen',
+  corners_spread: 'Hoekschoppen handicap',
+  team_corners: 'Team hoekschoppen',
+  total_cards: 'Totaal kaarten',
+  team_cards: 'Team kaarten',
+  correct_score: 'Juiste uitslag',
 }
 
 /** Zet een onbekende market.key om in een nette titel. */
