@@ -74,21 +74,26 @@ async function callProxy(resource, sport, force) {
 //
 // Waarde = leesbare Nederlandse titel die de vaak cryptische/Engelse
 // API-titel (bv. "EPL") overschrijft voor de UI.
+//
+// Let op: PropLine gebruikt ANDERE sport-keys dan The Odds API voor de
+// meeste competities (bv. "soccer_la_liga" i.p.v. "soccer_spain_la_liga").
+// Alleen soccer_epl en soccer_uefa_europa_league zijn toevallig gelijk —
+// vandaar dat met de oude (Odds API-)keys bijna alles wegviel.
 const ALLOWED_SPORTS = new Map([
   // Europese clubcompetities (UEFA)
-  ['soccer_uefa_champs_league', 'Champions League'],
+  ['soccer_uefa_champions_league', 'Champions League'],
   ['soccer_uefa_europa_league', 'Europa League'],
-  ['soccer_uefa_europa_conference_league', 'Conference League'],
+  ['soccer_uefa_conference_league', 'Conference League'],
   // 9 grootste Europese landencompetities
   ['soccer_epl', 'Premier League — Engeland'],
-  ['soccer_spain_la_liga', 'La Liga — Spanje'],
-  ['soccer_germany_bundesliga', 'Bundesliga — Duitsland'],
-  ['soccer_italy_serie_a', 'Serie A — Italië'],
-  ['soccer_france_ligue_one', 'Ligue 1 — Frankrijk'],
-  ['soccer_netherlands_eredivisie', 'Eredivisie — Nederland'],
-  ['soccer_portugal_primeira_liga', 'Primeira Liga — Portugal'],
-  ['soccer_belgium_first_div', 'Pro League — België'],
-  ['soccer_spl', 'Premiership — Schotland'],
+  ['soccer_la_liga', 'La Liga — Spanje'],
+  ['soccer_bundesliga', 'Bundesliga — Duitsland'],
+  ['soccer_serie_a', 'Serie A — Italië'],
+  ['soccer_ligue_1', 'Ligue 1 — Frankrijk'],
+  ['soccer_eredivisie', 'Eredivisie — Nederland'],
+  ['soccer_primeira_liga', 'Primeira Liga — Portugal'],
+  ['soccer_belgium_pro_league', 'Pro League — België'],
+  ['soccer_scottish_premiership', 'Premiership — Schotland'],
 ])
 
 function filterSoccer(sports) {
