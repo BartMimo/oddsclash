@@ -1,0 +1,19 @@
+# Dependencies
+node_modules
+dist
+dist-ssr
+
+# Environment — never commit real API keys
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
