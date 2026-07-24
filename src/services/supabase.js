@@ -22,18 +22,37 @@ export const supabase = isSupabaseConfigured
 
 // ---------------- Auth ----------------
 
+// Nooit een auth-call laten hangen: Onboarding.jsx zet `loading` alleen
+// terug op false in het catch-blok — zonder timeout blijft de knop dus
+// voor altijd "laden" tonen als de netwerkcall zelf blijft hangen i.p.v.
+// een fout te geven.
+function withTimeout(promise, ms, message) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error(message)), ms)),
+  ])
+}
+
 export async function signUp({ email, password, username, avatarColor }) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: { data: { username, avatar_color: avatarColor } },
-  })
+  const { data, error } = await withTimeout(
+    supabase.auth.signUp({
+      email,
+      password,
+      options: { data: { username, avatar_color: avatarColor } },
+    }),
+    10000,
+    'Time-out bij registreren. Probeer het opnieuw.'
+  )
   if (error) throw error
   return data
 }
 
 export async function signIn({ email, password }) {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+  const { data, error } = await withTimeout(
+    supabase.auth.signInWithPassword({ email, password }),
+    10000,
+    'Time-out bij inloggen. Probeer het opnieuw.'
+  )
   if (error) throw error
   return data
 }
